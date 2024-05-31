@@ -10,7 +10,8 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/users`, {
+        const url = process.env.NEXT_APP_SERVER || "http://localhost:3000";
+        const response = await fetch(`${url}/api/users`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

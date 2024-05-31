@@ -16,7 +16,8 @@ export default function UserPage({ params }: UserPageProps) {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/user?id=${userId}`, {
+        const url = process.env.NEXT_APP_SERVER || "http://localhost:3000";
+        const response = await fetch(`${url}/api/user?id=${userId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
