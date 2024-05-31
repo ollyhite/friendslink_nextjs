@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { MdLocationCity } from "react-icons/md";
+import { FaUserFriends } from "react-icons/fa";
 import { UserData } from "../types/userType";
 
 interface CardProps {
@@ -19,8 +21,25 @@ export default function Card({ data }: CardProps) {
           priority={true}
         />
         <div className="mt-3">
-          <h2 className="truncate text-lg font-bold">{data.first_name}</h2>
-          <h2 className="truncate text-lg font-bold">{data.last_name}</h2>
+          <h2 className="truncate text-lg font-bold">
+            {data.first_name} {data.last_name}
+          </h2>
+        </div>
+        <div className="flex items-center">
+          <MdLocationCity />
+          <p className="mr-3">{data.city}</p>
+        </div>
+        <div className="flex items-center justify-between">
+          <button
+            type="button"
+            className="mt-2 focus:outline-none text-white bg-amber-500 hover:text-amber-500 hover:bg-white focus:ring-4 focus:text-amber-500 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-transparent"
+          >
+            More
+          </button>
+          <div className="flex items-center">
+            <FaUserFriends />
+            <p className="ml-2">{data.friends.length}</p>
+          </div>
         </div>
       </Link>
     </div>
