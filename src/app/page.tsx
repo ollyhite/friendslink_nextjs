@@ -21,7 +21,7 @@ export default function Home() {
         setData(data);
       } catch (error) {
         console.error(error);
-        throw new Error("Failed to fetch data");
+        throw new Error("Failed to fetch users data");
       }
     };
     fetchData();

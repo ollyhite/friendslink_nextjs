@@ -9,3 +9,9 @@ export interface UserData {
   country: string;
   friends: Array<UserData>;
 }
+
+export interface UserPageProps {
+  params: {
+    id: string;
+  };
+}
