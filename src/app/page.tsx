@@ -11,7 +11,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const url = process.env.NEXT_APP_SERVER || "http://localhost:3000";
-        const response = await fetch(`${url}/api/users`, {
+        const response = await fetch(`/api/users`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
