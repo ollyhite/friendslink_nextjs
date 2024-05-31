@@ -1,9 +1,39 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
+import Results from "./components/Results";
+import { UserData } from "./types/userType";
 
 export default function Home() {
+  const [data, setData] = useState<UserData[] | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/users`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const { data } = await response.json();
+        console.log("AllUsers", data);
+        setData(data);
+      } catch (error) {
+        console.error(error);
+        throw new Error("Failed to fetch data");
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Home
-    </main>
+    <div className="flex items-center justify-center">
+      {data && data.length > 0 ? (
+        <Results data={data} />
+      ) : (
+        <p className="text-3xl">Loading...</p>
+      )}
+    </div>
   );
 }
